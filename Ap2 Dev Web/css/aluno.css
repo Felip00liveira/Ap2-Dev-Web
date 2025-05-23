@@ -1,0 +1,189 @@
+@import url(main.css);
+
+#aluno-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+#aluno-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#aluno-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#aluno-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 20px auto 0;
+}
+
+#aluno-form button:hover {
+  background-color: #45a049;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin: 30px 0;
+}
+
+#listar-alunos {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+#listar-alunos:hover {
+  background-color: #0b7dda;
+}
+
+#alunos-lista {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-aluno {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fafafa;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.card-aluno .aluno-nome {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.card-aluno .aluno-id {
+  font-size: 12px;
+  color: #888;
+  margin-left: 8px;
+}
+
+.card-aluno .aluno-idade,
+.card-aluno .aluno-media,
+.card-aluno .aluno-nascimento,
+.card-aluno .aluno-turma {
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.card-aluno button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.card-aluno button:hover {
+  background: #1565c0;
+}
+
+form, #alunos-lista, #professores-lista, #turmas-lista {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+form button, button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+form button:hover, button:hover {
+    background: #1565c0;
+}
+#edit-popup, #edit-popup-turma, #popup-turmas {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    color: #222;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    z-index: 2000;
+    min-width: 320px;
+    max-width: 95vw;
+}
+body.dark-mode form,
+body.dark-mode #aluno-form,
+body.dark-mode #professor-form,
+body.dark-mode #turma-form {
+    background: #23272b !important;
+    color: #e0e0e0 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
+}
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background: #181a1b !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #444 !important;
+}
