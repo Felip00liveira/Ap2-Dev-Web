@@ -2,9 +2,9 @@ const API_URL_TURMA = "https://school-system-spi.onrender.com/api/turmas";
 
 // Cadastrar Turma
 document.getElementById("turma-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
+  e.preventDefault(); // Impede o envio padrão do formulário
   const form = e.target;
-
+  // Monta objeto com dados do formulário
   const data = {
     materia: form.materia.value.trim(),
     descricao: form.descricao.value.trim(),
@@ -13,37 +13,36 @@ document.getElementById("turma-form").addEventListener("submit", async (e) => {
   };
 
   try {
+    // Envia os dados para a API para cadastrar a turma
     const res = await fetch(API_URL_TURMA, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
-    if (!res.ok) throw new Error("Erro ao cadastrar turma.");
-
+    if (!res.ok) throw new Error();
     alert("Turma cadastrada com sucesso!");
-    form.reset();
+    form.reset(); // Limpa o formulário
   } catch (err) {
-    console.error(err);
     alert("Erro ao cadastrar turma.");
+    console.error(err);
   }
 });
 
 // Listar Turmas
-document.getElementById("listar-turmas").addEventListener("click", async () => {
+document.getElementById("listar-turmas").onclick = listarTurmas;
+
+async function listarTurmas() {
   try {
+    // Busca lista de turmas na API
     const res = await fetch(API_URL_TURMA);
     const turmas = await res.json();
-
     const container = document.getElementById("turmas-lista");
     container.innerHTML = "<h2>Lista de Turmas</h2>";
-
+    // Para cada turma, cria um card com os dados e botões de ação
     turmas.forEach((t) => {
       container.innerHTML += `
         <div class="card-turma">
-          <div class="turma-materia">${t.materia}
-            <span class="turma-id">ID: ${t.id}</span>
-          </div>
+          <div class="turma-materia">${t.materia}</div>
           ${t.descricao && t.descricao !== "null" ? `<div class="turma-descricao">Descrição: ${t.descricao}</div>` : ""}
           <div class="turma-ativo">Ativo: ${t.ativo ? "Sim" : "Não"}</div>
           ${t.professor_id != null && t.professor_id !== 0 ? `<div class="turma-prof">Professor ID: ${t.professor_id}</div>` : ""}
@@ -53,90 +52,81 @@ document.getElementById("listar-turmas").addEventListener("click", async () => {
       `;
     });
   } catch (err) {
-    console.error(err);
     alert("Erro ao carregar lista de turmas.");
+    console.error(err);
   }
-});
+}
 
 // Editar Turma
 window.editarTurma = async function (id) {
   try {
+    // Busca dados da turma pelo ID
     const res = await fetch(`${API_URL_TURMA}/${id}`);
-    if (!res.ok) throw new Error("Erro ao buscar turma.");
-
+    if (!res.ok) throw new Error();
     const turma = await res.json();
-
+    // Preenche o formulário de edição com os dados da turma
     document.getElementById("turma-id").value = turma.id;
     document.getElementById("update-materia").value = turma.materia;
     document.getElementById("update-descricao").value = turma.descricao;
     document.getElementById("update-ativo").value = turma.ativo ? "true" : "false";
     document.getElementById("update-professor_id").value = turma.professor_id;
-
-    document.getElementById("edit-popup-turma").style.display = "block";
+    document.getElementById("edit-popup-turma").style.display = "block"; // Mostra o popup de edição
   } catch (err) {
-    console.error(err);
     alert("Erro ao carregar dados da turma.");
+    console.error(err);
   }
 };
 
 // Atualizar Turma
 document.getElementById("update-form-turma").addEventListener("submit", async (e) => {
-  e.preventDefault();
+  e.preventDefault(); // Impede envio padrão do formulário
   const form = e.target;
   const turmaId = document.getElementById("turma-id").value;
-
+  // Monta objeto com dados atualizados
   const data = {
     materia: form["update-materia"].value.trim(),
     descricao: form["update-descricao"].value.trim(),
     ativo: form["update-ativo"].value === "true",
     professor_id: parseInt(form["update-professor_id"].value),
   };
-
   if (isNaN(data.professor_id)) {
     alert("Preencha corretamente o ID do professor.");
     return;
   }
-
   try {
+    // Envia os dados atualizados para a API
     const res = await fetch(`${API_URL_TURMA}/${turmaId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-
-    if (!res.ok) throw new Error("Erro ao atualizar turma.");
-
+    if (!res.ok) throw new Error();
     alert("Turma atualizada com sucesso!");
-    form.reset();
-    document.getElementById("edit-popup-turma").style.display = "none";
-    document.getElementById("listar-turmas").click();
+    form.reset(); // Limpa o formulário de edição
+    document.getElementById("edit-popup-turma").style.display = "none"; // Fecha o popup
+    listarTurmas(); // Atualiza a lista de turmas
   } catch (err) {
-    console.error(err);
     alert("Erro ao atualizar turma.");
+    console.error(err);
   }
 });
 
 // Excluir Turma
 window.excluirTurma = async function (id) {
-  const confirmar = confirm("Tem certeza que deseja excluir esta turma?");
-  if (!confirmar) return;
-
+  if (!confirm("Tem certeza que deseja excluir esta turma?")) return; // Confirmação do usuário
   try {
-    const res = await fetch(`${API_URL_TURMA}/${id}`, {
-      method: "DELETE",
-    });
-
-    if (!res.ok) throw new Error("Erro ao excluir turma.");
-
+    // Envia requisição para deletar a turma
+    const res = await fetch(`${API_URL_TURMA}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error();
     alert("Turma excluída com sucesso!");
-    document.getElementById("listar-turmas").click();
+    listarTurmas(); // Atualiza a lista de turmas
   } catch (err) {
-    console.error(err);
     alert("Erro ao excluir turma.");
+    console.error(err);
   }
 };
 
-// Fechar popup
-document.getElementById("close-popup-turma").addEventListener("click", () => {
+// Fechar popup de edição
+document.getElementById("close-popup-turma").onclick = () => {
   document.getElementById("edit-popup-turma").style.display = "none";
-});
+};
