@@ -1,18 +1,11 @@
 const API_URL_PROFESSOR = "https://school-system-spi.onrender.com/api/professores";
 
-// Função utilitária para mostrar erros
 function mostrarErro(msg, err) {
   console.error(err);
   alert(msg);
 }
-// Menu lateral responsivo
 function toggleMenuBar() {
   document.querySelector('.menu').classList.toggle('shrink');
-}
-// Função utilitária para mostrar erros
-function mostrarErro(msg, err) {
-  console.error(err);
-  alert(msg);
 }
 
 // Cadastrar Professor
@@ -133,7 +126,7 @@ window.excluirProfessor = async function (id) {
   }
 }
 
-// Fechar popup de edição
+// Fechar popup
 document.getElementById("close-popup").onclick = () => {
   document.getElementById("edit-popup").style.display = "none";
 };

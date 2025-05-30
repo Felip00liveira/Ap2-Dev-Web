@@ -1,15 +1,13 @@
 const API_URL = "https://school-system-spi.onrender.com/api/alunos";
 
-// Menu lateral responsivo
 function toggleMenuBar() {
   document.querySelector('.menu').classList.toggle('shrink');
 }
 
 // Cadastrar Aluno
 document.getElementById("aluno-form").addEventListener("submit", async (e) => {
-  e.preventDefault(); // Impede o envio padrão do formulário
+  e.preventDefault();
   const form = e.target;
-  // Monta objeto com dados do formulário
   const data = {
     nome: form.nome.value.trim(),
     data_nascimento: form.data_nascimento.value,
@@ -18,7 +16,6 @@ document.getElementById("aluno-form").addEventListener("submit", async (e) => {
     turma_id: parseInt(form.turma_id.value),
   };
 
-  // Validação: impede cadastro de alunos com mais de 100 anos
   if (data.data_nascimento) {
     const nascimento = new Date(data.data_nascimento);
     const hoje = new Date();
@@ -32,7 +29,6 @@ document.getElementById("aluno-form").addEventListener("submit", async (e) => {
   }
 
   try {
-    // Envia os dados para a API para cadastrar o aluno
     const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,7 +36,7 @@ document.getElementById("aluno-form").addEventListener("submit", async (e) => {
     });
     if (!res.ok) throw new Error("Erro ao cadastrar aluno.");
     alert("Aluno cadastrado com sucesso!");
-    form.reset(); // Limpa o formulário
+    form.reset();
   } catch (err) {
     alert("Erro ao cadastrar aluno.");
     console.error(err);
@@ -50,12 +46,10 @@ document.getElementById("aluno-form").addEventListener("submit", async (e) => {
 // Listar Alunos
 document.getElementById("listar-alunos").addEventListener("click", async () => {
   try {
-    // Busca lista de alunos na API
     const res = await fetch(API_URL);
     const alunos = await res.json();
     const container = document.getElementById("alunos-lista");
     container.innerHTML = "<h2>Lista de Alunos</h2>";
-    // Para cada aluno, cria um card com os dados e botões de ação
     alunos.forEach((a) => {
       container.innerHTML += `
         <div class="card-aluno">
@@ -78,18 +72,16 @@ document.getElementById("listar-alunos").addEventListener("click", async () => {
 // Editar Aluno
 window.editarAluno = async function (id) {
   try {
-    // Busca dados do aluno pelo ID
     const res = await fetch(`${API_URL}/${id}`);
     if (!res.ok) throw new Error("Erro ao buscar aluno.");
     const aluno = await res.json();
-    // Preenche o formulário de edição com os dados do aluno
     document.getElementById("aluno-id").value = aluno.id;
     document.getElementById("update-nome").value = aluno.nome;
     document.getElementById("update-data_nascimento").value = aluno.data_nascimento;
     document.getElementById("update-nota_primeiro_semestre").value = aluno.nota_primeiro_semestre;
     document.getElementById("update-nota_segundo_semestre").value = aluno.nota_segundo_semestre;
     document.getElementById("update-turma_id").value = aluno.turma_id;
-    document.getElementById("edit-popup").style.display = "block"; // Mostra o popup de edição
+    document.getElementById("edit-popup").style.display = "block";
   } catch (err) {
     alert("Erro ao carregar dados do aluno.");
     console.error(err);
@@ -98,10 +90,9 @@ window.editarAluno = async function (id) {
 
 // Atualizar Aluno
 document.getElementById("update-form").addEventListener("submit", async (e) => {
-  e.preventDefault(); // Impede envio padrão do formulário
+  e.preventDefault();
   const form = e.target;
   const alunoId = document.getElementById("aluno-id").value;
-  // Monta objeto com dados atualizados
   const data = {
     nome: form["update-nome"].value.trim(),
     data_nascimento: form["update-data_nascimento"].value,
@@ -110,7 +101,6 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
     turma_id: parseInt(form["update-turma_id"].value),
   };
 
-  // Validação: impede atualização de alunos com mais de 100 anos
   if (data.data_nascimento) {
     const nascimento = new Date(data.data_nascimento);
     const hoje = new Date();
@@ -123,7 +113,6 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
     }
   }
 
-  // Validação: notas e turma_id devem ser válidos
   if (
     isNaN(data.nota_primeiro_semestre) ||
     isNaN(data.nota_segundo_semestre) ||
@@ -134,7 +123,7 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
   }
 
   try {
-    // Envia os dados atualizados para a API
+
     const res = await fetch(`${API_URL}/${alunoId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -142,9 +131,9 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
     });
     if (!res.ok) throw new Error("Erro ao atualizar aluno.");
     alert("Aluno atualizado com sucesso!");
-    form.reset(); // Limpa o formulário de edição
-    document.getElementById("edit-popup").style.display = "none"; // Fecha o popup
-    document.getElementById("listar-alunos").click(); // Atualiza a lista de alunos
+    form.reset();
+    document.getElementById("edit-popup").style.display = "none";
+    document.getElementById("listar-alunos").click();
   } catch (err) {
     alert("Erro ao atualizar aluno.");
     console.error(err);
@@ -153,20 +142,19 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
 
 // Excluir Aluno
 window.excluirAluno = async function (id) {
-  if (!confirm("Tem certeza que deseja excluir este aluno?")) return; // Confirmação do usuário
+  if (!confirm("Tem certeza que deseja excluir este aluno?")) return;
   try {
-    // Envia requisição para deletar o aluno
     const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
     if (!res.ok) throw new Error("Erro ao excluir aluno.");
     alert("Aluno excluído com sucesso!");
-    document.getElementById("listar-alunos").click(); // Atualiza a lista de alunos
+    document.getElementById("listar-alunos").click();
   } catch (err) {
     alert("Erro ao excluir aluno.");
     console.error(err);
   }
 };
 
-// Fechar popup de edição
+// Fechar popup
 document.getElementById("close-popup").onclick = () => {
   document.getElementById("edit-popup").style.display = "none";
 };

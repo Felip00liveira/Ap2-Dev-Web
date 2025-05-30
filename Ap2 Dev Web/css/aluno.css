@@ -1,7 +1,6 @@
 @import url(main.css);
 
 #aluno-form {
-  /* background-color: white; */ /* Removido light mode */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -44,7 +43,6 @@
 hr {
   border: 0;
   height: 1px;
-  /* background-color: #ddd; */ /* Removido light mode */
   margin: 30px 0;
 }
 
@@ -65,7 +63,6 @@ hr {
 }
 
 #alunos-lista {
-  /* background-color: #fff; */ /* Removido light mode */
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -78,7 +75,6 @@ hr {
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
-  /* background: #fafafa; */ /* Removido light mode */
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
@@ -90,7 +86,6 @@ hr {
 
 .card-aluno .aluno-id {
   font-size: 12px;
-  /* color: #888; */ /* Removido light mode */
   margin-left: 8px;
 }
 

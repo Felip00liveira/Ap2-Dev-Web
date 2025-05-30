@@ -1,7 +1,6 @@
 @import url(main.css);
 
 #turma-form {
-  /* background-color: white; */ /* Removido light mode */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -44,7 +43,6 @@
 hr {
   border: 0;
   height: 1px;
-  /* background-color: #ddd; */ /* Removido light mode */
   margin: 30px 0;
 }
 
@@ -65,7 +63,6 @@ hr {
 }
 
 #turmas-lista {
-  /* background-color: #fff; */ /* Removido light mode */
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -78,7 +75,6 @@ hr {
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
-  /* background: #fafafa; */ /* Removido light mode */
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
@@ -90,7 +86,6 @@ hr {
 
 .card-turma .turma-id {
   font-size: 12px;
-  /* color: #888; */ /* Removido light mode */
   margin-left: 8px;
 }
 
@@ -119,7 +114,6 @@ hr {
 }
 
 form, #turmas-lista, #alunos-lista, #professores-lista {
-    /* background: #fff; */ /* Removido light mode */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     padding: 24px;
@@ -164,28 +158,10 @@ form button:hover, button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    /* background: #fff; */ /* Removido light mode */
-    /* color: #222; */     /* Removido light mode */
     padding: 32px 24px;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     z-index: 2000;
     min-width: 320px;
     max-width: 95vw;
-}
-
-body.dark-mode form,
-body.dark-mode #turma-form,
-body.dark-mode #aluno-form,
-body.dark-mode #professor-form {
-    background: #23272b !important;
-    color: #e0e0e0 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
-}
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea {
-    background: #181a1b !important;
-    color: #e0e0e0 !important;
-    border: 1px solid #444 !important;
 }
