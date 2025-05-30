@@ -4,7 +4,7 @@ function toggleMenuBar() {
   document.querySelector('.menu').classList.toggle('shrink');
 }
 
-// Cadastrar Aluno
+
 document.getElementById("aluno-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -43,7 +43,7 @@ document.getElementById("aluno-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Listar Alunos
+
 document.getElementById("listar-alunos").addEventListener("click", async () => {
   try {
     const res = await fetch(API_URL);
@@ -69,7 +69,7 @@ document.getElementById("listar-alunos").addEventListener("click", async () => {
   }
 });
 
-// Editar Aluno
+
 window.editarAluno = async function (id) {
   try {
     const res = await fetch(`${API_URL}/${id}`);
@@ -88,7 +88,7 @@ window.editarAluno = async function (id) {
   }
 };
 
-// Atualizar Aluno
+
 document.getElementById("update-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -140,7 +140,7 @@ document.getElementById("update-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Excluir Aluno
+
 window.excluirAluno = async function (id) {
   if (!confirm("Tem certeza que deseja excluir este aluno?")) return;
   try {
@@ -154,7 +154,7 @@ window.excluirAluno = async function (id) {
   }
 };
 
-// Fechar popup
+
 document.getElementById("close-popup").onclick = () => {
   document.getElementById("edit-popup").style.display = "none";
 };

@@ -8,7 +8,6 @@ function toggleMenuBar() {
   document.querySelector('.menu').classList.toggle('shrink');
 }
 
-// Cadastrar Professor
 document.getElementById("professor-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -37,7 +36,7 @@ document.getElementById("professor-form").addEventListener("submit", async (e) =
   }
 });
 
-// Listar Professores
+
 document.getElementById("listar-professores").onclick = listarProfessores;
 
 async function listarProfessores() {
@@ -63,7 +62,7 @@ async function listarProfessores() {
   }
 }
 
-// Editar Professor (global)
+
 window.editarProfessor = async function (id) {
   try {
     const res = await fetch(`${API_URL_PROFESSOR}/${id}`);
@@ -81,7 +80,7 @@ window.editarProfessor = async function (id) {
   }
 };
 
-// Atualizar Professor
+
 document.getElementById("update-form").onsubmit = async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -113,7 +112,7 @@ document.getElementById("update-form").onsubmit = async (e) => {
   }
 };
 
-// Excluir Professor (global)
+
 window.excluirProfessor = async function (id) {
   if (!confirm("Tem certeza que deseja excluir este professor?")) return;
   try {
@@ -126,7 +125,7 @@ window.excluirProfessor = async function (id) {
   }
 }
 
-// Fechar popup
+
 document.getElementById("close-popup").onclick = () => {
   document.getElementById("edit-popup").style.display = "none";
 };
