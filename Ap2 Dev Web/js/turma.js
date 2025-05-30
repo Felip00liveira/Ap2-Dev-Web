@@ -5,7 +5,7 @@ function toggleMenuBar() {
   document.querySelector('.menu').classList.toggle('shrink');
 }
 
-// Cadastrar Turma
+
 document.getElementById("turma-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -31,7 +31,7 @@ document.getElementById("turma-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Listar Turmas
+
 document.getElementById("listar-turmas").onclick = listarTurmas;
 
 async function listarTurmas() {
@@ -66,7 +66,7 @@ async function listarTurmas() {
   }
 }
 
-// Editar Turma
+
 window.editarTurma = async function (id) {
   try {
     const res = await fetch(`${API_URL_TURMA}/${id}`);
@@ -84,7 +84,7 @@ window.editarTurma = async function (id) {
   }
 };
 
-// Atualizar Turma
+
 document.getElementById("update-form-turma").addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = e.target;
@@ -116,7 +116,7 @@ document.getElementById("update-form-turma").addEventListener("submit", async (e
   }
 });
 
-// Excluir Turma
+
 window.excluirTurma = async function (id) {
   if (!confirm("Tem certeza que deseja excluir esta turma?")) return;
   try {
@@ -130,7 +130,7 @@ window.excluirTurma = async function (id) {
   }
 };
 
-// Fechar popup
+
 document.getElementById("close-popup-turma").onclick = () => {
   document.getElementById("edit-popup-turma").style.display = "none";
 };
