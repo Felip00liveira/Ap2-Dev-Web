@@ -9,7 +9,6 @@
 </head>
 
 <body>
-  <button id="toggle-theme" class="theme-toggle-btn" title="Alternar tema">🌙</button>
     <nav class="menu">
         <button class="shrink-btn" title="Reduzir barra" onclick="toggleMenuBar()">&#9776;</button>
         <a href="main.html" data-short="🏠">Main</a>
@@ -17,11 +16,7 @@
         <a href="professor.html" data-short="👨‍🏫">Professor</a> 
         <a href="turma.html" data-short="📚">Turma</a>
     </nav>
-    <script>
-    function toggleMenuBar() {
-        document.querySelector('.menu').classList.toggle('shrink');
-        }
-    </script>
+
   <h1>Cadastro de Aluno</h1>
 
   <form id="aluno-form">
@@ -52,41 +47,7 @@
     </form>
   </div>
 
-  <div id="page-loader">
-    <svg class="checkmark" viewBox="0 0 52 52">
-      <circle cx="26" cy="26" r="25" fill="none" />
-      <path class="check" fill="none" d="M14 27l7 7 16-16" />
-    </svg>
-  </div>
-
   <script src="js/aluno.js"></script>
-  <script>
-    const path = window.location.pathname;
-    if (path.includes("aluno")) document.getElementById("nav-aluno").classList.add("active");
-    if (path.includes("professor")) document.getElementById("nav-professor").classList.add("active");
-    if (path.includes("turma")) document.getElementById("nav-turma").classList.add("active");
-  </script>
-  <script>
-    const themeBtn = document.getElementById('toggle-theme');
-    function setThemeIcon() {
-      themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-    themeBtn.onclick = function() {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-      setThemeIcon();
-    };
-    window.onload = function() {
-      if(localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-      setThemeIcon();
-    };
-  </script>
 </body>
 
 </html>

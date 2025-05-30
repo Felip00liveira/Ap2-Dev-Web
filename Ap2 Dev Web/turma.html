@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <button id="toggle-theme" class="theme-toggle-btn" title="Alternar tema">🌙</button>
     <nav class="menu">
         <button class="shrink-btn" title="Reduzir barra" onclick="toggleMenuBar()">&#9776;</button>
         <a href="main.html" data-short="🏠">Main</a>
@@ -17,12 +16,7 @@
         <a href="professor.html" data-short="👨‍🏫">Professor</a> 
         <a href="turma.html" class="active" data-short="📚">Turma</a>
     </nav>
-    <script>
-    function toggleMenuBar() {
-        document.querySelector('.menu').classList.toggle('shrink');
-    }
-    </script>
-
+  
     <h1>Cadastro de Turma</h1>
 
   <form id="turma-form">
@@ -59,32 +53,5 @@
   </div>
 
   <script src="js/turma.js"></script>
-  <script>
-    const themeBtn = document.getElementById('toggle-theme');
-    function setThemeIcon() {
-      themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-    themeBtn.onclick = function() {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-      setThemeIcon();
-    };
-    window.onload = function() {
-      if(localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-      setThemeIcon();
-    };
-  </script>
-  <script>
-    const path = window.location.pathname;
-    if (path.includes("aluno")) document.getElementById("nav-aluno")?.classList.add("active");
-    if (path.includes("professor")) document.getElementById("nav-professor")?.classList.add("active");
-    if (path.includes("turma")) document.getElementById("nav-turma")?.classList.add("active");
-  </script>
 </body>
 </html>

@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <button id="toggle-theme" class="theme-toggle-btn" title="Alternar tema">🌙</button>
     <nav class="menu">
         <button class="shrink-btn" title="Reduzir barra" onclick="toggleMenuBar()">&#9776;</button>
         <a href="main.html" data-short="🏠">Main</a>
@@ -17,11 +16,6 @@
         <a href="professor.html" class="active" data-short="👨‍🏫">Professor</a> 
         <a href="turma.html" data-short="📚">Turma</a>
     </nav>
-    <script>
-    function toggleMenuBar() {
-        document.querySelector('.menu').classList.toggle('shrink');
-        }
-    </script>
 
  <h1>Cadastro de Professor</h1>
 
@@ -32,7 +26,6 @@
     <label>Idade: <input type="number" name="idade" required></label><br>
     <button type="submit">Cadastrar Professor</button>
   </form>
-  <button id="btn-turmas" type="button" style="margin-top:10px;">Ver Turmas Disponíveis</button>
 
   <hr>
 
@@ -59,26 +52,5 @@
   </div>
 
   <script src="js/professor.js"></script>
-    <script>
-    const themeBtn = document.getElementById('toggle-theme');
-    function setThemeIcon() {
-      themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-    themeBtn.onclick = function() {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-      setThemeIcon();
-    };
-    window.onload = function() {
-      if(localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-      setThemeIcon();
-    };
-  </script>
 </body>
 </html>

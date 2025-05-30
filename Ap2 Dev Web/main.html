@@ -7,8 +7,6 @@
     <title>Main</title>
 </head>
 <body>
-    <button id="toggle-theme" class="theme-toggle-btn" title="Alternar tema">🌙</button>
-
     <nav class="menu">
         <button class="shrink-btn" title="Reduzir barra" onclick="toggleMenuBar()">&#9776;</button>
         <a href="main.html" class="active" data-short="🏠">Main</a>
@@ -23,7 +21,7 @@
         <ul>
             <li>Felipe Batista de Oliveira Nascimento</li>
             <li>Ana Olivia Geraldo</li>
-            <li>Guilherme Sousa Ferraz</li>
+            <li>Guilherme Soua Ferraz</li>
         </ul>
     </div>
 
@@ -31,26 +29,6 @@
     function toggleMenuBar() {
         document.querySelector('.menu').classList.toggle('shrink');
     }
-
-    const themeBtn = document.getElementById('toggle-theme');
-    function setThemeIcon() {
-        themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    }
-    themeBtn.onclick = function() {
-        document.body.classList.toggle('dark-mode');
-        if(document.body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
-        setThemeIcon();
-    };
-    window.onload = function() {
-        if(localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
-        setThemeIcon();
-    };
     </script>
 </body>
 </html>

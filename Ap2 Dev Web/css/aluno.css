@@ -1,12 +1,13 @@
 @import url(main.css);
 
 #aluno-form {
-  background-color: white;
+  /* background-color: white; */ /* Removido light mode */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   max-width: 500px;
   margin: 0 auto 30px;
+  font-size: 1.15em;
 }
 
 #aluno-form label {
@@ -43,7 +44,7 @@
 hr {
   border: 0;
   height: 1px;
-  background-color: #ddd;
+  /* background-color: #ddd; */ /* Removido light mode */
   margin: 30px 0;
 }
 
@@ -64,7 +65,7 @@ hr {
 }
 
 #alunos-lista {
-  background-color: #fff;
+  /* background-color: #fff; */ /* Removido light mode */
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -77,7 +78,7 @@ hr {
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
-  background: #fafafa;
+  /* background: #fafafa; */ /* Removido light mode */
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
@@ -89,7 +90,7 @@ hr {
 
 .card-aluno .aluno-id {
   font-size: 12px;
-  color: #888;
+  /* color: #888; */ /* Removido light mode */
   margin-left: 8px;
 }
 
@@ -119,7 +120,6 @@ hr {
 }
 
 form, #alunos-lista, #professores-lista, #turmas-lista {
-    background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     padding: 24px;
@@ -157,33 +157,17 @@ form button, button {
 form button:hover, button:hover {
     background: #1565c0;
 }
+
 #edit-popup, #edit-popup-turma, #popup-turmas {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: #fff;
-    color: #222;
     padding: 32px 24px;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     z-index: 2000;
     min-width: 320px;
     max-width: 95vw;
-}
-body.dark-mode form,
-body.dark-mode #aluno-form,
-body.dark-mode #professor-form,
-body.dark-mode #turma-form {
-    background: #23272b !important;
-    color: #e0e0e0 !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
-}
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea {
-    background: #181a1b !important;
-    color: #e0e0e0 !important;
-    border: 1px solid #444 !important;
 }

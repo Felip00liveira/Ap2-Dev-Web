@@ -1,5 +1,10 @@
 const API_URL = "https://school-system-spi.onrender.com/api/alunos";
 
+// Menu lateral responsivo
+function toggleMenuBar() {
+  document.querySelector('.menu').classList.toggle('shrink');
+}
+
 // Cadastrar Aluno
 document.getElementById("aluno-form").addEventListener("submit", async (e) => {
   e.preventDefault(); // Impede o envio padrão do formulário

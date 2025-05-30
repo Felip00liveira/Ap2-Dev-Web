@@ -1,4 +1,9 @@
 const API_URL_TURMA = "https://school-system-spi.onrender.com/api/turmas";
+const API_URL_PROFESSOR = "https://school-system-spi.onrender.com/api/professores";
+// Menu lateral responsivo
+function toggleMenuBar() {
+  document.querySelector('.menu').classList.toggle('shrink');
+}
 
 // Cadastrar Turma
 document.getElementById("turma-form").addEventListener("submit", async (e) => {
@@ -33,27 +38,36 @@ document.getElementById("listar-turmas").onclick = listarTurmas;
 
 async function listarTurmas() {
   try {
-    // Busca lista de turmas na API
-    const res = await fetch(API_URL_TURMA);
-    const turmas = await res.json();
+    // Busca lista de turmas e professores na API
+    const [resTurmas, resProfs] = await Promise.all([
+      fetch(API_URL_TURMA),
+      fetch(API_URL_PROFESSOR)
+    ]);
+    const turmas = await resTurmas.json();
+    const professores = await resProfs.json();
+
+    // Cria um mapa de id para nome do professor
+    const profMap = {};
+    professores.forEach(p => { profMap[p.id] = p.nome; });
+
     const container = document.getElementById("turmas-lista");
     container.innerHTML = "<h2>Lista de Turmas</h2>";
     // Para cada turma, cria um card com os dados e botões de ação
     turmas.forEach((t) => {
+      const nomeProf = profMap[t.professor_id] || "Desconhecido";
       container.innerHTML += `
         <div class="card-turma">
           <div class="turma-materia">${t.materia}</div>
-          ${t.descricao && t.descricao !== "null" ? `<div class="turma-descricao">Descrição: ${t.descricao}</div>` : ""}
+          <div class="turma-descricao">${t.descricao ?? ""}</div>
+          <div class="turma-prof">Professor: ${nomeProf}</div>
           <div class="turma-ativo">Ativo: ${t.ativo ? "Sim" : "Não"}</div>
-          ${t.professor_id != null && t.professor_id !== 0 ? `<div class="turma-prof">Professor ID: ${t.professor_id}</div>` : ""}
           <button onclick="editarTurma(${t.id})">Editar</button>
           <button onclick="excluirTurma(${t.id})">Excluir</button>
         </div>
       `;
     });
-  } catch (err) {
+  } catch {
     alert("Erro ao carregar lista de turmas.");
-    console.error(err);
   }
 }
 

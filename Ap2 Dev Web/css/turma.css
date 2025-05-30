@@ -1,95 +1,71 @@
 @import url(main.css);
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f5f5f5;
-}
-
-@media (max-width: 700px) {
-  body {
-    padding: 0;
-  }
-}
-
-h1 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
 #turma-form {
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  /* background-color: white; */ /* Removido light mode */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   max-width: 500px;
   margin: 0 auto 30px;
+  font-size: 1.15em;
 }
 
 #turma-form label {
   display: block;
-  margin-bottom: 12px;
-  font-weight: 600;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
-#turma-form input,
-#turma-form select {
+#turma-form input {
   width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 15px;
-  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 #turma-form button {
-  background-color: #45a049;
-  color: #fff;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
-  padding: 10px 18px;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.2s;
+  font-size: 16px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0;
 }
 
 #turma-form button:hover {
-  background: #1565c0;
+  background-color: #45a049;
 }
 
 hr {
   border: 0;
   height: 1px;
-  background-color: #ddd;
+  /* background-color: #ddd; */ /* Removido light mode */
   margin: 30px 0;
 }
 
 #listar-turmas {
-  background: #1976d2;
-  color: #fff;
+  background-color: #2196F3;
+  color: white;
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
-  padding: 10px 18px;
-  font-size: 16px;
   cursor: pointer;
+  font-size: 16px;
   display: block;
-  margin: 0 auto 20px auto;
-  transition: background 0.2s;
+  margin: 0 auto 20px;
 }
 
 #listar-turmas:hover {
-  background: #1565c0;
+  background-color: #0b7dda;
 }
 
 #turmas-lista {
-  background-color: #fff;
+  /* background-color: #fff; */ /* Removido light mode */
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -102,11 +78,11 @@ hr {
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
-  background: #fafafa;
+  /* background: #fafafa; */ /* Removido light mode */
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
-.card-turma .turma-materia {
+.card-turma .turma-nome {
   font-weight: bold;
   font-size: 18px;
   margin-bottom: 4px;
@@ -114,13 +90,13 @@ hr {
 
 .card-turma .turma-id {
   font-size: 12px;
-  color: #888;
+  /* color: #888; */ /* Removido light mode */
   margin-left: 8px;
 }
 
-.card-turma .turma-descricao,
-.card-turma .turma-ativo,
-.card-turma .turma-prof {
+.card-turma .turma-ano,
+.card-turma .turma-turno,
+.card-turma .turma-professor {
   margin-bottom: 4px;
   font-size: 15px;
 }
@@ -142,82 +118,66 @@ hr {
   background: #1565c0;
 }
 
-/* Pop-up de edição */
-#edit-popup-turma {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background: #fff;
-  color: #222;
-  padding: 32px 24px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  z-index: 2000;
-  min-width: 320px;
-  max-width: 95vw;
+form, #turmas-lista, #alunos-lista, #professores-lista {
+    /* background: #fff; */ /* Removido light mode */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px;
+    margin-bottom: 32px;
 }
 
-#edit-popup-turma h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
+form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
-#update-form-turma label {
-  display: block;
-  margin-bottom: 12px;
-  font-weight: 600;
+form input, form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
-#update-form-turma input,
-#update-form-turma select {
-  width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 15px;
-  margin-bottom: 10px;
+form button, button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
 }
 
-#update-form-turma button {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-top: 10px;
-  transition: background 0.2s;
+form button:hover, button:hover {
+    background: #1565c0;
 }
 
-#update-form-turma button:hover {
-  background: #1565c0;
+#edit-popup, #edit-popup-turma, #popup-turmas {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* background: #fff; */ /* Removido light mode */
+    /* color: #222; */     /* Removido light mode */
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    z-index: 2000;
+    min-width: 320px;
+    max-width: 95vw;
 }
 
-#close-popup-turma {
-  background: #888;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.2s;
-}
-
-#close-popup-turma:hover {
-  background: #555;
-}
 body.dark-mode form,
+body.dark-mode #turma-form,
 body.dark-mode #aluno-form,
-body.dark-mode #professor-form,
-body.dark-mode #turma-form {
+body.dark-mode #professor-form {
     background: #23272b !important;
     color: #e0e0e0 !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
